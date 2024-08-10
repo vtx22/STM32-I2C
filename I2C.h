@@ -35,7 +35,7 @@ extern "C"
     uint32_t read_i2c_reg_32(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t reg_address);
     float read_i2c_reg_float(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t reg_address);
 
-    void write_i2c_bytes(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t start_address, uint8_t *data, uint16_t length);
+    void write_i2c_bytes(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t *data, uint16_t length);
     void write_i2c_reg_8(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t reg_address, uint8_t data);
     void write_i2c_reg_16(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t reg_address, uint16_t data);
     void write_i2c_reg_32(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t reg_address, uint32_t data);

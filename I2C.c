@@ -34,7 +34,7 @@ float read_i2c_reg_float(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_
     return data;
 }
 
-void write_i2c_bytes(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t start_address, uint8_t *data, uint16_t length)
+void write_i2c_bytes(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t *data, uint16_t length)
 {
     HAL_I2C_Master_Transmit(hi2c, (device_address << 1), data, length, HAL_MAX_DELAY);
 }
