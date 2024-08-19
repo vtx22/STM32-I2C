@@ -14,6 +14,8 @@
 #include "stm32f4xx_hal.h"
 #elif defined(STM32F7)
 #include "stm32f7xx_hal.h"
+#elif defined(STM32H7)
+#include "stm32h7xx_hal.h"
 #else
 #error "Unsupported STM32 microcontroller. Make sure you build with -D STM32F1 for example!"
 #endif
