@@ -78,3 +78,18 @@ void write_i2c_reg_float(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_
     uint32_t float_as_int = *(uint32_t *)&data;
     write_i2c_reg_32(hi2c, device_address, reg_address, float_as_int);
 }
+
+void i2c_scan(I2C_HandleTypeDef *hi2c, uint8_t *addresses, uint8_t length)
+{
+    uint8_t found_devices = 0;
+    for (uint8_t i = 1; i < 128; i++)
+    {
+        if (HAL_I2C_IsDeviceReady(hi2c, (i << 1), 1, HAL_MAX_DELAY) == HAL_OK)
+        {
+            if (found_devices < length)
+            {
+                addresses[found_devices++] = i;
+            }
+        }
+    }
+}

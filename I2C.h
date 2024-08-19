@@ -41,6 +41,8 @@ extern "C"
     void write_i2c_reg_32(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t reg_address, uint32_t data);
     void write_i2c_reg_float(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t reg_address, float data);
 
+    void i2c_scan(I2C_HandleTypeDef *hi2c, uint8_t *addresses, uint8_t length);
+
 #ifdef __cplusplus
 }
 #endif
