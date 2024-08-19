@@ -84,12 +84,14 @@ void i2c_scan(I2C_HandleTypeDef *hi2c, uint8_t *addresses, uint8_t length)
     uint8_t found_devices = 0;
     for (uint8_t i = 1; i < 128; i++)
     {
+        if (found_devices >= length)
+        {
+            return;
+        }
+
         if (HAL_I2C_IsDeviceReady(hi2c, (i << 1), 1, HAL_MAX_DELAY) == HAL_OK)
         {
-            if (found_devices < length)
-            {
-                addresses[found_devices++] = i;
-            }
+            addresses[found_devices++] = i;
         }
     }
 }
