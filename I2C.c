@@ -2,8 +2,8 @@
 
 void read_i2c_bytes(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t start_address, uint8_t *data, uint16_t length)
 {
-    HAL_I2C_Master_Transmit(hi2c, (device_address << 1), &start_address, 1, HAL_MAX_DELAY);
-    HAL_I2C_Master_Receive(hi2c, (device_address << 1) + 0x01, data, length, HAL_MAX_DELAY);
+    HAL_I2C_Master_Transmit(hi2c, (device_address << 1), &start_address, 1, _V_HAL_MAX_DELAY);
+    HAL_I2C_Master_Receive(hi2c, (device_address << 1) + 0x01, data, length, _V_HAL_MAX_DELAY);
 }
 
 uint8_t read_i2c_reg_8(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t reg_address)
@@ -36,7 +36,7 @@ float read_i2c_reg_float(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_
 
 void write_i2c_bytes(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t *data, uint16_t length)
 {
-    HAL_I2C_Master_Transmit(hi2c, (device_address << 1), data, length, HAL_MAX_DELAY);
+    HAL_I2C_Master_Transmit(hi2c, (device_address << 1), data, length, _V_HAL_MAX_DELAY);
 }
 
 void write_i2c_reg_8(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t reg_address, uint8_t data)
@@ -46,7 +46,7 @@ void write_i2c_reg_8(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t re
     d[0] = reg_address;
     d[1] = data;
 
-    HAL_I2C_Master_Transmit(hi2c, (device_address << 1), d, 2, HAL_MAX_DELAY);
+    HAL_I2C_Master_Transmit(hi2c, (device_address << 1), d, 2, _V_HAL_MAX_DELAY);
 }
 
 void write_i2c_reg_16(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t reg_address, uint16_t data)
@@ -57,7 +57,7 @@ void write_i2c_reg_16(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t r
     d[1] = (data >> 8);
     d[2] = (data & 0xFF);
 
-    HAL_I2C_Master_Transmit(hi2c, (device_address << 1), d, 3, HAL_MAX_DELAY);
+    HAL_I2C_Master_Transmit(hi2c, (device_address << 1), d, 3, _V_HAL_MAX_DELAY);
 }
 
 void write_i2c_reg_32(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t reg_address, uint32_t data)
@@ -70,7 +70,7 @@ void write_i2c_reg_32(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t r
     d[3] = (data >> 8);
     d[4] = (data & 0xFF);
 
-    HAL_I2C_Master_Transmit(hi2c, (device_address << 1), d, 5, HAL_MAX_DELAY);
+    HAL_I2C_Master_Transmit(hi2c, (device_address << 1), d, 5, _V_HAL_MAX_DELAY);
 }
 
 void write_i2c_reg_float(I2C_HandleTypeDef *hi2c, uint8_t device_address, uint8_t reg_address, float data)
@@ -89,7 +89,7 @@ void i2c_scan(I2C_HandleTypeDef *hi2c, uint8_t *addresses, uint8_t length)
             return;
         }
 
-        if (HAL_I2C_IsDeviceReady(hi2c, (i << 1), 1, HAL_MAX_DELAY) == HAL_OK)
+        if (HAL_I2C_IsDeviceReady(hi2c, (i << 1), 1, I2C_SCAN_HAL_MAX_DELAY) == HAL_OK)
         {
             addresses[found_devices++] = i;
         }

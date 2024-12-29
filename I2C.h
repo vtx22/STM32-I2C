@@ -22,8 +22,12 @@
 
 #include <stdint.h>
 
-#ifndef HAL_MAX_DELAY
-#define HAL_MAX_DELAY 100
+#ifndef _V_HAL_MAX_DELAY
+#define _V_HAL_MAX_DELAY 100
+#endif
+
+#ifndef I2C_SCAN_HAL_MAX_DELAY
+#define I2C_SCAN_HAL_MAX_DELAY 100
 #endif
 
 #ifdef __cplusplus
